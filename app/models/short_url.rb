@@ -13,6 +13,7 @@ class ShortUrl < ApplicationRecord
   private
 
   def validate_full_url
+    
   end
 
 end
