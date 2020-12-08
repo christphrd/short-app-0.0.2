@@ -22,7 +22,7 @@ class ShortUrl < ApplicationRecord
         errors.add(:full_url, "Full url is not a valid url")
       end
     rescue URI::InvalidURIError
-      errors.add(:full_url, "Full url is not a valid url")
+      errors.add(:full_url, "is not a valid url")
     end
   end
 
