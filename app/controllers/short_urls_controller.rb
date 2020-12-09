@@ -18,6 +18,9 @@ class ShortUrlsController < ApplicationController
   end
 
   def show
+    @short_url = ShortUrl.find_by_short_code(params["id"])
+    @short_url.increment!(:click_count)
+    redirect_to @short_url.full_url
   end
 
   private
