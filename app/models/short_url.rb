@@ -18,7 +18,7 @@ class ShortUrl < ApplicationRecord
       decoded_id += CHARACTERS.index(char) * (BASE ** power)
       index += 1
     end
-    return ShortUrl.find(id: decoded_id)
+    return ShortUrl.find(decoded_id)
   end
 
   def short_code
