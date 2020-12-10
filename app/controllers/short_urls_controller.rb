@@ -4,8 +4,9 @@ class ShortUrlsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
-    #TODO: Check if this works as expected
-    render json: {"top 100 most frequently accessed shortcodes": ShortUrl.order(click_count: :desc).limit(100)}
+    @top_100_short_urls = ShortUrl.order(click_count: :desc).limit(100)
+    @short_urls_json = @top_100_short_urls.to_a.map {|short_url| short_url.public_attributes}
+    render json: {"urls": @short_urls_json }
   end
 
   def create

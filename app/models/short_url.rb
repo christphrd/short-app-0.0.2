@@ -45,6 +45,10 @@ class ShortUrl < ApplicationRecord
     self.update(title: title_line)
   end
 
+  def public_attributes
+    self.to_json(only: [:full_url, :title, :click_count])
+  end
+
   private
 
   def validate_full_url
