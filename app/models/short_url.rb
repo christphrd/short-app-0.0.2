@@ -1,4 +1,5 @@
 require 'uri'
+require 'open-uri'
 
 class ShortUrl < ApplicationRecord
 
@@ -36,6 +37,12 @@ class ShortUrl < ApplicationRecord
   end
 
   def update_title!
+    title_line = ''
+    URI.open(full_url) do |f|
+      str = f.read
+      title_line = str.scan(/<title>(.*?)<\/title>/)[0][0]
+    end
+    self.update(title: title_line)
   end
 
   private
