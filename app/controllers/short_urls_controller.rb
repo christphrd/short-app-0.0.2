@@ -5,8 +5,8 @@ class ShortUrlsController < ApplicationController
 
   def index
     @top_100_short_urls = ShortUrl.order(click_count: :desc).limit(100)
-    @short_urls_json = @top_100_short_urls.to_a.map {|short_url| short_url.public_attributes}
-    render json: {"urls": @short_urls_json }
+    short_urls_json = @top_100_short_urls.to_a.map {|short_url| short_url.public_attributes}
+    render json: {"urls": short_urls_json }
   end
 
   def create
